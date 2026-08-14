@@ -281,6 +281,49 @@ export const conversations: Conversation[] = [
   },
 ];
 
+export interface NewsArticle {
+  id: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  publishedAt: string;
+}
+
+export const newsArticles: NewsArticle[] = [
+  {
+    id: "news_301",
+    title: "Cập nhật điểm chuẩn IELTS kỳ nhập học 2027 tại các trường Úc",
+    excerpt:
+      "Nhiều trường tại Úc điều chỉnh yêu cầu IELTS đầu vào cho kỳ nhập học 2027, một số ngành hot tăng nhẹ 0.5 điểm.",
+    category: "Điểm chuẩn",
+    publishedAt: "2026-08-10",
+  },
+  {
+    id: "news_300",
+    title: "5 lỗi thường gặp khi chuẩn bị hồ sơ du học Canada",
+    excerpt:
+      "Từ bảng điểm dịch thuật chưa hợp lệ đến ảnh CCCD mờ — tổng hợp các lỗi khiến hồ sơ bị yêu cầu nộp lại nhiều nhất.",
+    category: "Kinh nghiệm",
+    publishedAt: "2026-08-07",
+  },
+  {
+    id: "news_299",
+    title: "Học bổng Yonsei University 2027 mở đơn đăng ký sớm",
+    excerpt:
+      "Yonsei University vừa công bố học bổng dành cho sinh viên quốc tế, hạn nộp hồ sơ sớm trước ngày 30/09/2026.",
+    category: "Học bổng",
+    publishedAt: "2026-08-02",
+  },
+  {
+    id: "news_298",
+    title: "Hướng dẫn đối chiếu điểm chuẩn nhanh trên cổng hồ sơ",
+    excerpt:
+      "Chỉ mất 3 bước để biết hồ sơ của bạn đạt hay chưa đạt điểm chuẩn từng trường ngay sau khi nộp giấy tờ.",
+    category: "Hướng dẫn",
+    publishedAt: "2026-07-28",
+  },
+];
+
 // Hồ sơ của học viên đang đăng nhập demo tại /portal
 export const currentStudent = {
   name: "Nguyễn Minh Anh",
