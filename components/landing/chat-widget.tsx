@@ -29,7 +29,8 @@ export function ChatWidget() {
     const trimmed = text.trim();
     if (!trimmed || sending) return;
 
-    setMessages((prev) => [...prev, { from: "user", text: trimmed }]);
+    const history = [...messages, { from: "user" as const, text: trimmed }];
+    setMessages(history);
     setInput("");
     setSending(true);
 
@@ -37,7 +38,7 @@ export function ChatWidget() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed }),
+        body: JSON.stringify({ messages: history }),
       });
       const data = await res.json();
       const reply = res.ok ? data.reply : data.error;

@@ -4,6 +4,11 @@ import { buildChatSystemInstruction } from "@/lib/chatbot-qna";
 
 const MODEL = "gemini-3.5-flash-lite";
 
+interface ChatTurn {
+  from: "user" | "bot";
+  text: string;
+}
+
 export async function POST(request: Request) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
@@ -13,23 +18,43 @@ export async function POST(request: Request) {
     );
   }
 
-  let message = "";
+  let turns: ChatTurn[] = [];
   try {
     const body = await request.json();
-    message = typeof body?.message === "string" ? body.message.trim() : "";
+    turns = Array.isArray(body?.messages)
+      ? body.messages.filter(
+          (m: unknown): m is ChatTurn =>
+            !!m &&
+            typeof m === "object" &&
+            (m as ChatTurn).from !== undefined &&
+            ["user", "bot"].includes((m as ChatTurn).from) &&
+            typeof (m as ChatTurn).text === "string" &&
+            (m as ChatTurn).text.trim().length > 0,
+        )
+      : [];
   } catch {
     return NextResponse.json({ error: "Yêu cầu không hợp lệ." }, { status: 400 });
   }
 
-  if (!message) {
+  // Lịch sử phải bắt đầu bằng lượt của người dùng — bỏ lời chào tĩnh mở đầu (nếu có).
+  while (turns.length && turns[0].from === "bot") {
+    turns = turns.slice(1);
+  }
+
+  if (!turns.length) {
     return NextResponse.json({ error: "Câu hỏi không được để trống." }, { status: 400 });
   }
+
+  const contents = turns.map((turn) => ({
+    role: turn.from === "user" ? ("user" as const) : ("model" as const),
+    parts: [{ text: turn.text.trim() }],
+  }));
 
   try {
     const ai = new GoogleGenAI({ apiKey });
     const response = await ai.models.generateContent({
       model: MODEL,
-      contents: message,
+      contents,
       config: {
         systemInstruction: buildChatSystemInstruction(),
       },
