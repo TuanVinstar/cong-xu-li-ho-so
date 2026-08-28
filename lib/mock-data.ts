@@ -27,38 +27,31 @@ export const countries = [
 export const schools: School[] = [
   {
     id: "sch_01",
-    name: "University of Toronto",
-    country: "Canada",
-    minGpa: 8.0,
-    minIelts: 6.5,
+    name: "Đại học Deakin",
+    country: "Úc",
+    minGpa: 7.0,
+    minIelts: 6.0,
   },
   {
     id: "sch_02",
-    name: "RMIT University",
+    name: "Đại học Swinburne",
     country: "Úc",
     minGpa: 7.0,
     minIelts: 6.0,
   },
   {
     id: "sch_03",
-    name: "University of Manchester",
-    country: "Anh",
-    minGpa: 7.5,
-    minIelts: 6.5,
+    name: "Đại học Melbourne",
+    country: "Úc",
+    minGpa: 8.5,
+    minIelts: 7.0,
   },
   {
     id: "sch_04",
-    name: "Arizona State University",
-    country: "Mỹ",
-    minGpa: 6.5,
-    minIelts: 6.0,
-  },
-  {
-    id: "sch_05",
-    name: "Yonsei University",
-    country: "Hàn Quốc",
-    minGpa: 8.5,
-    minIelts: 7.0,
+    name: "Đại học Auckland",
+    country: "New Zealand",
+    minGpa: 7.5,
+    minIelts: 6.5,
   },
 ];
 
@@ -351,6 +344,6 @@ export const currentStudent = {
   },
   matches: [
     { school: schools[0], passed: true },
-    { school: schools[4], passed: false },
+    { school: schools[2], passed: false },
   ],
 };
