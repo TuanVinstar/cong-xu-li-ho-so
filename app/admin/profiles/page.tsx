@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { studentProfiles } from "@/lib/mock-data";
+import { getStudentProfiles } from "@/lib/profiles-data";
 
 const docLabels = [
   { key: "transcript", label: "Bảng điểm" },
@@ -17,7 +17,9 @@ const docLabels = [
   { key: "identity", label: "CMND/Hộ chiếu" },
 ] as const;
 
-export default function AdminProfilesPage() {
+export default async function AdminProfilesPage() {
+  const studentProfiles = await getStudentProfiles();
+
   return (
     <>
       <AdminPageHeader

@@ -8,9 +8,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { conversations } from "@/lib/mock-data";
+import { getConversations } from "@/lib/conversations-data";
 
-export default function AdminConversationsPage() {
+export default async function AdminConversationsPage() {
+  const conversations = await getConversations();
+
   return (
     <>
       <AdminPageHeader

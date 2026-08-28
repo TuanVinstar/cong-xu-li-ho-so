@@ -11,7 +11,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { admissionRequests, servicePackages } from "@/lib/mock-data";
+import { servicePackages } from "@/lib/mock-data";
+import { getRequests } from "@/lib/requests-data";
 
 function formatVnd(value: number) {
   return value.toLocaleString("vi-VN") + "₫";
@@ -21,7 +22,9 @@ function packageLabel(id: string) {
   return servicePackages.find((p) => p.id === id)?.name ?? id;
 }
 
-export default function AdminRequestsPage() {
+export default async function AdminRequestsPage() {
+  const admissionRequests = await getRequests();
+
   return (
     <>
       <AdminPageHeader
