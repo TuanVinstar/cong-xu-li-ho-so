@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/table";
 import { getConversations } from "@/lib/conversations-data";
 
+// Luôn render động theo từng request để dữ liệu luôn khớp Supabase (không prerender tĩnh lúc build).
+export const dynamic = "force-dynamic";
+
 export default async function AdminConversationsPage() {
   const conversations = await getConversations();
 

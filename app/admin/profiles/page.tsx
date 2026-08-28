@@ -17,6 +17,9 @@ const docLabels = [
   { key: "identity", label: "CMND/Hộ chiếu" },
 ] as const;
 
+// Luôn render động theo từng request để dữ liệu luôn khớp Supabase (không prerender tĩnh lúc build).
+export const dynamic = "force-dynamic";
+
 export default async function AdminProfilesPage() {
   const studentProfiles = await getStudentProfiles();
 

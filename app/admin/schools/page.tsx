@@ -12,6 +12,9 @@ import {
 } from "@/components/ui/table";
 import { getSchools } from "@/lib/schools-data";
 
+// Luôn render động theo từng request để dữ liệu luôn khớp Supabase (không prerender tĩnh lúc build).
+export const dynamic = "force-dynamic";
+
 export default async function AdminSchoolsPage() {
   const schools = await getSchools();
 
