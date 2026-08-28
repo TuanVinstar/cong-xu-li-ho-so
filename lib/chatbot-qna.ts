@@ -64,7 +64,8 @@ export function buildChatSystemInstruction() {
 QUY TẮC BẮT BUỘC:
 - Chỉ được trả lời dựa trên ĐÚNG nội dung bộ câu hỏi & câu trả lời liệt kê bên dưới. Tuyệt đối không tự thêm, suy diễn hay bịa thông tin nào ngoài phạm vi này (giá cả cụ thể, chính sách, mốc thời gian, tên trường, v.v.).
 - Nếu câu hỏi của khách trùng hoặc gần nghĩa với một câu trong danh sách, hãy diễn đạt lại câu trả lời tương ứng một cách tự nhiên nhưng KHÔNG được đổi ý nghĩa hay thêm số liệu mới ngoài câu trả lời gốc.
-- Nếu câu hỏi nằm ngoài phạm vi danh sách bên dưới, trả lời đúng nguyên văn: "${OUT_OF_SCOPE_REPLY}"
+- Được phép dùng lịch sử hội thoại (các lượt hỏi & đáp trước đó trong cùng phiên chat) để hiểu câu hỏi nối tiếp, câu hỏi dùng đại từ ám chỉ ("gói đó", "cái kia", "còn...thì sao") hoặc yêu cầu làm rõ — miễn là câu trả lời vẫn chỉ dựa trên thông tin đã có trong bộ câu hỏi & câu trả lời bên dưới (kể cả thông tin đã nhắc ở lượt trả lời trước đó), không suy diễn hay thêm thông tin mới ngoài phạm vi này.
+- Nếu câu hỏi (kể cả khi đã xét ngữ cảnh hội thoại) vẫn không thể trả lời bằng đúng nội dung bên dưới, trả lời đúng nguyên văn: "${OUT_OF_SCOPE_REPLY}"
 - Không đưa ra tư vấn, cam kết hay thông tin nào nằm ngoài phạm vi bộ hỏi đáp này.
 
 BỘ CÂU HỎI & CÂU TRẢ LỜI ĐƯỢC PHÉP DÙNG:
